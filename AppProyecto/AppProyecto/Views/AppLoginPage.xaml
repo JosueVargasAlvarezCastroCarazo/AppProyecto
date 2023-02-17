@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AutoAppo_JosueVa.Views.AppLoginPage"
+             Shell.NavBarIsVisible="True"
+             NavigationPage.HasNavigationBar="False"
+             >
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Label 
+                    Text="Gabelo Conejo"
+                    FontSize="Large"
+                    VerticalOptions="Start" 
+                    HorizontalOptions="CenterAndExpand" 
+                    Margin="50,200,50,0"/>
+
+                <Entry Placeholder="Email" Margin="50,100,50,0"/>
+                <Entry Placeholder="Contraseña" Margin="50,30,50,0"/>
+
+                <Button Text="Iniciar Sesión" Margin="80,50,80,0" CornerRadius="20"/>
+                <Button Text="Crear Cuenta" Margin="100,10,100,0" CornerRadius="20"/>
+
+                <Label Text="Olvide la contraseña" TextDecorations="Underline" Margin="50,100,50,0" HorizontalOptions="Center"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
