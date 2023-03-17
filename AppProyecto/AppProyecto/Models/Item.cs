@@ -1,11 +1,22 @@
-﻿using System;
+﻿using RestSharp;
+using System;
 
 namespace AppProyecto.Models
 {
     public class Item
     {
-        public string Id { get; set; }
-        public string Text { get; set; }
-        public string Description { get; set; }
+
+        public Item()
+        {
+
+        }
+
+        public RestRequest Request { get; set; }
+
+        public int ItemId { get; set; }
+        public string ItemName { get; set; }
+        public string ItemDescription { get; set; }
+        public string Code { get; set; }
+        public bool Active { get; set; }
     }
 }

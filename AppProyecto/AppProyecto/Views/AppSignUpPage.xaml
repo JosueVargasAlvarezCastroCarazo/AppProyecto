@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppProyecto.Views.AppSignUpPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+
+                <Label 
+                    Text="Creación de cuenta"
+                    VerticalOptions="Start" 
+                    FontSize="Medium"
+                    HorizontalOptions="CenterAndExpand" 
+                    Margin="50,50,50,0"/>
+
+                <Entry x:Name="TxtIdentificación" Placeholder="Identificación" Keyboard="Numeric" Margin="50,30,50,0"/>
+                <Entry x:Name="TxtPassword" Placeholder="Contraseña" IsPassword="True" Margin="50,30,50,0" />
+
+                <Entry x:Name="TxtName" Placeholder="Nombre" Margin="50,30,50,0" />
+                <Entry x:Name="TxtPhone" Placeholder="Teléfono" Margin="50,30,50,0" Keyboard="Numeric"/>
+                <Entry x:Name="TxtAddress" Placeholder="Dirección" Margin="50,30,50,0" />
+
+                <Button x:Name="BtnSignUp" Text="Crear Cuenta" Margin="80,50,80,0" CornerRadius="20" Clicked="BtnSignUp_Clicked" BackgroundColor="#1c0d5e"/>
+                <Button x:Name="BtnLogin" Text="Iniciar Sesión"  Margin="100,10,100,0" CornerRadius="20" Clicked="BtnLogin_Clicked" BackgroundColor="#1c0d5e"/>
+                
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

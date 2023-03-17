@@ -8,20 +8,27 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
+                <Image Source="rabbit.png" 
+                       Margin="50,100,50,0"
+                       HeightRequest="100"
+                       WidthRequest="100"
+                       />
+                
                 <Label 
-                    Text="Gabelo Conejo"
+                    Text="GABELO CONEJO"
                     FontSize="Large"
                     VerticalOptions="Start" 
                     HorizontalOptions="CenterAndExpand" 
-                    Margin="50,200,50,0"/>
+                    Margin="50,20,50,0" 
+                    TextColor="#1c0d5e"/>
 
-                <Entry Placeholder="Email" Margin="50,100,50,0"/>
-                <Entry Placeholder="Contraseña" Margin="50,30,50,0"/>
+                <Entry x:Name="TxtIdentificación" Placeholder="Identificación" Keyboard="Numeric" Margin="50,100,50,0" Text="207610379"/>
+                <Entry x:Name="TxtPassword" Placeholder="Contraseña" Margin="50,30,50,0"  IsPassword="True" Text="Klapaucius1."/>
 
-                <Button Text="Iniciar Sesión" Margin="80,50,80,0" CornerRadius="20"/>
-                <Button Text="Crear Cuenta" Margin="100,10,100,0" CornerRadius="20"/>
+                <Button x:Name="BtnLogin" Text="Iniciar Sesión" Margin="80,50,80,0" CornerRadius="20" Clicked="BtnLogin_Clicked" BackgroundColor="#1c0d5e"/>
+                <Button x:Name="BtnSignUp" Text="Crear Cuenta" Margin="100,10,100,0" CornerRadius="20" Clicked="BtnSignUp_Clicked" BackgroundColor="#1c0d5e"/>
 
-                <Label Text="Olvide la contraseña" TextDecorations="Underline" Margin="50,100,50,0" HorizontalOptions="Center"/>
+              
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

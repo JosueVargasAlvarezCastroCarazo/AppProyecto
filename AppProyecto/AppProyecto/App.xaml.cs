@@ -14,7 +14,6 @@ namespace AppProyecto
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
             //MainPage = new AppShell();
             App.Current.UserAppTheme = OSAppTheme.Light;
             MainPage = new NavigationPage(new AppLoginPage());
