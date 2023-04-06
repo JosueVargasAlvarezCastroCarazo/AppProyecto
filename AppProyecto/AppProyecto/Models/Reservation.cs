@@ -72,5 +72,58 @@ namespace AppProyecto.Models
         }
 
 
+
+        public async Task<List<Reservation>> GetList(int UserId,DateTime Start, DateTime End)
+        {
+            try
+            {
+                string RouteSufix = "";
+
+           
+                RouteSufix = string.Format("items/Search?active={0}&search={1}", Active, search);
+                
+                string URL = APIConnection.ProductionUrlPrefix + RouteSufix;
+
+                RestClient client = new RestClient(URL);
+
+                Request = new RestRequest(URL, Method.Get);
+
+                Request.AddHeader(APIConnection.ApiKeyName, APIConnection.ApiKey);
+                Request.AddHeader(APIConnection.ContentType, APIConnection.MimeType);
+
+                RestResponse response = await client.ExecuteAsync(Request);
+
+                HttpStatusCode statusCode = response.StatusCode;
+
+                if (
+                    statusCode == HttpStatusCode.OK ||
+                    statusCode == HttpStatusCode.Created ||
+                    statusCode == HttpStatusCode.NoContent
+                    )
+                {
+
+                    return JsonConvert.DeserializeObject<List<Reservation>>(response.Content);
+                }
+                else
+                {
+                    return new List<Reservation>();
+                }
+            }
+            catch (Exception ex)
+            {
+                string ErrorMsg = ex.Message;
+                throw;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
     }
 }
