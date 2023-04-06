@@ -1,12 +1,88 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="AppProyecto.Views.UserListPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="End" Margin="80,10,10,0">
+                <Label 
+                    Text="Ver Inactivos"
+                    VerticalOptions="Center"
+                    TextColor="#1c0d5e"/>
+                <Switch x:Name="SwitchShowDisable" IsToggled="false" Toggled="SwitchShowDisable_Toggled" HorizontalOptions="Center"></Switch>
+            </StackLayout>
+
+            <Image 
+                       Source="sports.png" 
+                       Margin="50,30,50,0"
+                       HeightRequest="50"
+                       xct:IconTintColorEffect.TintColor="#1c0d5e"
+                       HorizontalOptions="Center"
+                       >
+            </Image>
+
+            <Label 
+                    Text="Usuarios"
+                    VerticalOptions="Start" 
+                    FontSize="Medium"
+                    HorizontalOptions="CenterAndExpand" 
+                    Margin="50,0,50,0"
+                    FontAttributes="Bold"
+                    TextColor="#1c0d5e"/>
+
+            <Image 
+                       Source="list.png" 
+                       Margin="50,50,50,0"
+                       HeightRequest="50"
+                       xct:IconTintColorEffect.TintColor="#1c0d5e"
+                       HorizontalOptions="Center"
+                       >
+            </Image>
+
+            <Label 
+                    Text="Lista de Usuarios"
+                    VerticalOptions="Start" 
+                    FontSize="Medium"
+                    HorizontalOptions="CenterAndExpand" 
+                    Margin="50,0,50,0"
+                    TextColor="#1c0d5e"/>
+
+
+
+            <StackLayout Margin="50,10,50,0" Orientation="Horizontal">
+
+                <Entry x:Name="TxtSearch" Placeholder="Buscar" Margin="0,0,10,0" HorizontalOptions="FillAndExpand" Text=""/>
+
+                <Image 
+                       Source="search.png" 
+                       HeightRequest="25"
+                       WidthRequest="25"
+                       xct:IconTintColorEffect.TintColor="#1c0d5e"
+                       >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                                Tapped="TapGestureRecognizer_Tapped"
+                                NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                </Image>
+
+            </StackLayout>
+
+
+            <ListView x:Name="ListPage" Margin="50,25,50,0" ItemTapped="ListPage_ItemTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate >
+                        <ViewCell >
+                            <StackLayout Orientation="Horizontal" HeightRequest="150">
+                                <Label Text="{Binding Identification}" Margin="10,10,10,0"/>
+                                <Label Text="{Binding Name}" Margin="10,10,10,0"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

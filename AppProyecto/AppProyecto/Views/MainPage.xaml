@@ -1,23 +1,61 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="AppProyecto.Views.MainPage">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
+                <Image 
+                       x:Name="ImgProfile"
+                       Source="userIcon.png" 
+                       Margin="50,25,25,0"
+                       HeightRequest="50"
+                       WidthRequest="50"
+                       xct:IconTintColorEffect.TintColor="#1c0d5e"
+                       HorizontalOptions="End"
+                       >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                    Tapped="TapGestureRecognizer_Tapped"
+                    NumberOfTapsRequired="1" />     
+                    </Image.GestureRecognizers>
+                </Image>
+
+                <Image 
+                       Source="sports.png" 
+                       Margin="50,25,25,0"
+                       HeightRequest="50"
+                       xct:IconTintColorEffect.TintColor="#1c0d5e"
+                       HorizontalOptions="Center"
+                       >
+                </Image>
+
                 <Label 
                     x:Name="TxtUserWelcome"
                     Text="Bienvenido Inicial"
                     VerticalOptions="Start" 
                     FontSize="Medium"
                     HorizontalOptions="CenterAndExpand" 
-                    Margin="50,50,50,0"/>
+                    Margin="50,0,50,0"
+                    FontAttributes="Bold"
+                    TextColor="#1c0d5e"/>
+                
+
                 <Label 
                     Text="Menu Inicial"
                     VerticalOptions="Start" 
                     FontSize="Medium"
                     HorizontalOptions="CenterAndExpand" 
-                    Margin="50,50,50,0"/>
+                    Margin="50,80,50,0"
+                    TextColor="#1c0d5e"/>
+
+
+                <Button x:Name="BtnUsers" HeightRequest="80" Text="Usuarios" Margin="80,30,80,0" CornerRadius="20" Clicked="BtnUsers_Clicked" BackgroundColor="#1c0d5e"/>
+                <Button x:Name="BtnItems" HeightRequest="80" Text="Artefactos" Margin="80,10,80,0" CornerRadius="20" Clicked="BtnItems_Clicked" BackgroundColor="#1c0d5e"/>
+                <Button x:Name="BtnReservations" HeightRequest="80" Text="Reservas" Margin="80,10,80,0" CornerRadius="20" Clicked="BtnReservations_Clicked" BackgroundColor="#1c0d5e"/>
+                <Button x:Name="BtnMyReservations" HeightRequest="250" Text="Mis Reservas" Margin="80,30,80,30" CornerRadius="20" Clicked="BtnMyReservations_Clicked" BackgroundColor="#1c0d5e"/>
+
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

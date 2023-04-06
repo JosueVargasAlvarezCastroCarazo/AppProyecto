@@ -13,25 +13,34 @@ using Xamarin.Forms.Xaml;
 namespace AppProyecto.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ItemListPage : ContentPage
+    public partial class SelectItemPage : ContentPage
     {
         ItemViewModel ViewModel;
-        public ItemListPage()
+        ReservationPage Page;
+
+        public SelectItemPage()
         {
             InitializeComponent();
             this.BindingContext = ViewModel = new ItemViewModel();
         }
+
+        public SelectItemPage(ReservationPage page)
+        {
+            InitializeComponent();
+            this.BindingContext = ViewModel = new ItemViewModel();
+            this.Page = page;
+        } 
 
         //muestra la lista cuando se enseña la pantalla
         protected async override void OnAppearing()
         {
             try
             {
-                
+
                 UserDialogs.Instance.ShowLoading("Cargando..");
-                List<Item> list = await ViewModel.GetList(!SwitchShowDisable.IsToggled, TxtSearch.Text.Trim());
+                List<Item> list = await ViewModel.GetList(true, TxtSearch.Text.Trim());
                 ListPage.ItemsSource = list;
-                
+
             }
             catch (Exception)
             {
@@ -44,35 +53,10 @@ namespace AppProyecto.Views
             }
         }
 
-
-        private async void BtnCreate_Clicked(object sender, EventArgs e)
+        private void ListPage_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            await Navigation.PushAsync(new ItemPage());
-        }
-
-        //cambia entre inactivos y activos
-        private async void Switch_Toggled(object sender, ToggledEventArgs e)
-        {
-            try
-            {
-                UserDialogs.Instance.ShowLoading("Cargando..");
-                List<Item> list = await ViewModel.GetList(!SwitchShowDisable.IsToggled, TxtSearch.Text.Trim());
-                ListPage.ItemsSource = list;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            finally
-            {
-                UserDialogs.Instance.HideLoading();
-            }
-        }
-
-        private async void ListPage_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            await this.Navigation.PushAsync(new ItemPage((ListPage.SelectedItem as Item)));
+            Page.SelectedItem = (ListPage.SelectedItem as Item);
+            this.Navigation.PopAsync();
         }
 
         //busca un texto entre los items
@@ -81,7 +65,7 @@ namespace AppProyecto.Views
             try
             {
                 UserDialogs.Instance.ShowLoading("Cargando..");
-                List<Item> list = await ViewModel.GetList(!SwitchShowDisable.IsToggled, TxtSearch.Text.Trim());
+                List<Item> list = await ViewModel.GetList(true, TxtSearch.Text.Trim());
                 ListPage.ItemsSource = list;
             }
             catch (Exception)

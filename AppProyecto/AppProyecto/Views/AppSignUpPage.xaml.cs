@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using AppProyecto.Models;
 using AppProyecto.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -23,16 +24,17 @@ namespace AppProyecto.Views
             this.BindingContext = userViewModel = new UserViewModel();
         }
 
+        //crea la cuenta del usuario
         private async void BtnSignUp_Clicked(object sender, EventArgs e)
         {
            
             if (
-                (TxtPassword.Text != null && !string.IsNullOrEmpty(TxtPassword.Text.Trim())) ||
-                (TxtIdentificación.Text != null && !string.IsNullOrEmpty(TxtIdentificación.Text.Trim())) ||
-                (TxtName.Text != null && !string.IsNullOrEmpty(TxtName.Text.Trim())) ||
-                (TxtPhone.Text != null && !string.IsNullOrEmpty(TxtPhone.Text.Trim())) ||
-                (TxtAddress.Text != null && !string.IsNullOrEmpty(TxtAddress.Text.Trim()))
-
+                (TxtPassword.Text != null && !string.IsNullOrEmpty(TxtPassword.Text.Trim())) &&
+                (TxtIdentification.Text != null && !string.IsNullOrEmpty(TxtIdentification.Text.Trim())) &&
+                (TxtName.Text != null && !string.IsNullOrEmpty(TxtName.Text.Trim())) &&
+                (TxtPhone.Text != null && !string.IsNullOrEmpty(TxtPhone.Text.Trim())) &&
+                (TxtAddress.Text != null && !string.IsNullOrEmpty(TxtAddress.Text.Trim())) &&
+                (TxtEmail.Text != null && !string.IsNullOrEmpty(TxtEmail.Text.Trim()))
                 )
             {
 
@@ -40,24 +42,36 @@ namespace AppProyecto.Views
                 try
                 {
                     UserDialogs.Instance.ShowLoading("Cargando..");
-                    await Task.Delay(1000);
-                    bool R = await userViewModel.CreateAccount(
-                        TxtIdentificación.Text.Trim(), 
-                        TxtPassword.Text.Trim(),
-                        TxtName.Text.Trim(),
-                        TxtPhone.Text.Trim(),
-                        TxtAddress.Text.Trim()
-                        );
 
-                    if (R)
+                    User checkUser = await userViewModel.CheckIdentification(TxtIdentification.Text.Trim());
+                    if ( checkUser.UserId == 0)
                     {
-                        await DisplayAlert("OK", "Usuario creado", "OK");
-                        await Navigation.PopAsync();
+                        bool R = await userViewModel.CreateAccount(
+                                                TxtIdentification.Text.Trim(),
+                                                TxtPassword.Text.Trim(),
+                                                TxtName.Text.Trim(),
+                                                TxtPhone.Text.Trim(),
+                                                TxtAddress.Text.Trim(),
+                                                TxtEmail.Text.Trim()
+                                                );
+
+                        if (R)
+                        {
+                            await DisplayAlert("Atención", "Usuario creado", "Aceptar");
+                            await Navigation.PopAsync();
+                        }
+                        else
+                        {
+                            await DisplayAlert("Atención", "Usuario no creado", "Aceptar");
+                        }
                     }
                     else
                     {
-                        await DisplayAlert("Upss", "Usuario NO creado", "OK");
+                        await DisplayAlert("Atención", "Ya existe un usuario con esta identificación", "Aceptar");
                     }
+
+
+                    
 
                 }
                 catch (Exception)
@@ -73,7 +87,7 @@ namespace AppProyecto.Views
             }
             else
             {
-                await DisplayAlert("Error", "Debe de ingresar todos los datos para continuar", "OK");
+                await DisplayAlert("Atención", "Debe de ingresar todos los datos para continuar", "Aceptar");
             }
            
         }

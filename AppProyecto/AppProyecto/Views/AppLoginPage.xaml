@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="AutoAppo_JosueVa.Views.AppLoginPage"
              Shell.NavBarIsVisible="True"
              NavigationPage.HasNavigationBar="False"
@@ -12,7 +13,7 @@
                        Margin="50,100,50,0"
                        HeightRequest="100"
                        WidthRequest="100"
-                       />
+                       xct:IconTintColorEffect.TintColor="#1c0d5e"/>
                 
                 <Label 
                     Text="GABELO CONEJO"
@@ -20,15 +21,41 @@
                     VerticalOptions="Start" 
                     HorizontalOptions="CenterAndExpand" 
                     Margin="50,20,50,0" 
+                    FontAttributes="Bold"
                     TextColor="#1c0d5e"/>
 
-                <Entry x:Name="TxtIdentificación" Placeholder="Identificación" Keyboard="Numeric" Margin="50,100,50,0" Text="207610379"/>
-                <Entry x:Name="TxtPassword" Placeholder="Contraseña" Margin="50,30,50,0"  IsPassword="True" Text="Klapaucius1."/>
+                <Entry x:Name="TxtIdentificación" Placeholder="Identificación" Keyboard="Numeric" Margin="50,50,50,0" Text="207610379" MaxLength="9"/>
+
+                <StackLayout Margin="50,30,50,0" Orientation="Horizontal">
+                    <Entry x:Name="TxtPassword" Placeholder="Contraseña" Margin="0,0,10,0"  IsPassword="True" Text="Klapaucius1." HorizontalOptions="FillAndExpand"/>
+                    <Image 
+                       x:Name="ImgProfile"
+                       Source="eye.png" 
+                       HeightRequest="25"
+                       WidthRequest="25"
+                       xct:IconTintColorEffect.TintColor="#1c0d5e"
+                       >
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="TapGestureRecognizer_Tapped"
+                                NumberOfTapsRequired="1" /> 
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+                
+                
 
                 <Button x:Name="BtnLogin" Text="Iniciar Sesión" Margin="80,50,80,0" CornerRadius="20" Clicked="BtnLogin_Clicked" BackgroundColor="#1c0d5e"/>
                 <Button x:Name="BtnSignUp" Text="Crear Cuenta" Margin="100,10,100,0" CornerRadius="20" Clicked="BtnSignUp_Clicked" BackgroundColor="#1c0d5e"/>
 
-              
+                <Label Text="Olvidó la contraseña" TextColor="#1c0d5e" Margin="50,100,50,0" HorizontalOptions="Center" >
+
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped_1" />
+                    </Label.GestureRecognizers>
+
+                </Label>
+
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

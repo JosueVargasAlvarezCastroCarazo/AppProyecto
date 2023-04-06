@@ -31,6 +31,7 @@ namespace AutoAppo_JosueVa.Views
             await this.Navigation.PushAsync(new AppSignUpPage());
         }
 
+        //inicia sesion del usuario
         private async void BtnLogin_Clicked(object sender, EventArgs e)
         {
             if (TxtIdentificación.Text != null && !string.IsNullOrEmpty(TxtIdentificación.Text.Trim()))
@@ -42,17 +43,27 @@ namespace AutoAppo_JosueVa.Views
                     try
                     {
                         UserDialogs.Instance.ShowLoading("Cargando..");
-                        await Task.Delay(1000);
                         User R = await userViewModel.ValidateLogin(TxtIdentificación.Text.Trim(), TxtPassword.Text.Trim());
 
                         if (R.UserId > 0)
                         {
-                            Global.user = R;
-                            await this.Navigation.PushAsync(new MainPage());
+
+                            if ((bool)R.Active)
+                            {
+                                Global.user = R;
+                                await this.Navigation.PushAsync(new MainPage());
+
+                            }
+                            else
+                            {
+                                await DisplayAlert("Atención", "Usuario desactivado", "Aceptar");
+                            }
+
+                            
                         }
                         else
                         {
-                            await DisplayAlert("Upss", "Usuario NO Encontrado", "OK");
+                            await DisplayAlert("Atención", "Usuario no Encontrado", "Aceptar");
                         }
 
                     }
@@ -69,13 +80,23 @@ namespace AutoAppo_JosueVa.Views
                 }
                 else
                 {
-                    await DisplayAlert("Error", "La contraseña esta en blanco", "OK");
+                    await DisplayAlert("Atención", "La contraseña esta en blanco", "Aceptar");
                 }
             }
             else
             {
-                await DisplayAlert("Error", "La identificación esta en blanco", "OK");
+                await DisplayAlert("Atención", "La identificación esta en blanco", "Aceptar");
             }
+        }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            TxtPassword.IsPassword = !TxtPassword.IsPassword;
+        }
+
+        private async void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+        {
+            await this.Navigation.PushAsync(new RecoverPassword());
         }
     }
 }

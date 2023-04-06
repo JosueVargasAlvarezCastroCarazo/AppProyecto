@@ -1,12 +1,65 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AppProyecto.Views.ReservationPage">
+             x:Class="AppProyecto.Views.ReservationPage"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit" 
+             xmlns:local="clr-namespace:AppProyecto.Tools">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView>
+            <StackLayout>
+
+                <Image 
+                       Source="list.png" 
+                       Margin="50,50,50,0"
+                       HeightRequest="80"
+                       xct:IconTintColorEffect.TintColor="#1c0d5e"
+                       HorizontalOptions="Center"
+                       >
+                </Image>
+
+                <Label 
+                    Text="Mantenimiento de Reservas"
+                    VerticalOptions="Start" 
+                    FontSize="Medium"
+                    HorizontalOptions="CenterAndExpand" 
+                    FontAttributes="Bold"
+                     TextColor="#1c0d5e"
+                    Margin="50,0,50,0"/>
+
+
+                <Label 
+                    Text="Inició Reserva"
+                    VerticalOptions="Start" 
+                    FontSize="Medium"
+                    HorizontalOptions="CenterAndExpand" 
+                    FontAttributes="Bold"
+                     TextColor="#1c0d5e"
+                    Margin="50,50,50,0"/>
+                <local:DateTimePicker2 x:Name="StartDate"  Margin="50,0,50,0"></local:DateTimePicker2>
+
+                <Label 
+                    Text="Fin Reserva"
+                    VerticalOptions="Start" 
+                    FontSize="Medium"
+                    HorizontalOptions="CenterAndExpand" 
+                    FontAttributes="Bold"
+                     TextColor="#1c0d5e"
+                    Margin="50,50,50,0"/>
+                <local:DateTimePicker2 x:Name="EndDate"  Margin="50,0,50,0"></local:DateTimePicker2>
+
+
+                <StackLayout  Margin="50,50,50,0" Orientation="Horizontal">
+                    <Entry x:Name="TxtNameItem" Placeholder="Artefacto" IsReadOnly="true" HorizontalOptions="FillAndExpand"/>
+                    <Button x:Name="BtnSearch" Text="Selecionar" CornerRadius="20" Clicked="BtnSearch_Clicked" BackgroundColor="#1c0d5e"/>
+                </StackLayout>
+
+                <Editor x:Name="TxtDescription" Placeholder="Notas" HeightRequest="100" Margin="50,30,50,0" />
+
+                <Button x:Name="BtnAction" Text="Guardar" Margin="80,50,80,50" CornerRadius="20" Clicked="BtnAction_Clicked" BackgroundColor="#1c0d5e"/>
+
+                <Button x:Name="BtnActionDelete" Text="Eliminar" Margin="100,15,100,50" CornerRadius="20" Clicked="BtnActionDelete_Clicked" BackgroundColor="#1c0d5e" IsVisible="false"/>
+
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
