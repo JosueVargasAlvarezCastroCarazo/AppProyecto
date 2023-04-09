@@ -17,11 +17,9 @@ namespace AppProyecto.Views
     public partial class ReservationPage : ContentPage
     {
 
-        UserViewModel UserViewModel;
-        ItemViewModel ItemViewModel;
+    
         ReservationViewModel ViewModel;
 
-        public User SelectedUser = null;
         public Item SelectedItem = null;
         public Reservation CurrentItem = null;
 
@@ -29,14 +27,24 @@ namespace AppProyecto.Views
         {
             InitializeComponent();
             this.BindingContext = ViewModel = new ReservationViewModel();
-            UserViewModel = new UserViewModel();
-            ItemViewModel = new ItemViewModel();
-
             StartDate.DateTime = DateTime.Now;
             EndDate.DateTime = DateTime.Now;
-
         }
 
+        public ReservationPage(Reservation CurrentItem)
+        {
+            InitializeComponent();
+            this.BindingContext = ViewModel = new ReservationViewModel();
+            StartDate.DateTime = CurrentItem.StartDate;
+            EndDate.DateTime = CurrentItem.EndDate;
+            this.CurrentItem = CurrentItem;
+            SelectedItem = new Item();
+            SelectedItem.ItemId = CurrentItem.ItemId;
+            SelectedItem.ItemName = CurrentItem.ItemName;
+            BtnActionDelete.IsVisible = true;
+            TxtDescription.Text = CurrentItem.Notes;
+            BtnSearch.IsVisible = false;
+        }
 
         private async void BtnAction_Clicked(object sender, EventArgs e)
         {
@@ -68,13 +76,14 @@ namespace AppProyecto.Views
                         }
                         else
                         {
-                            /*R = await ViewModel.Update(
-                                CurrentItem.ItemId,
-                                TxtName.Text.Trim(),
-                                TxtCode.Text.Trim(),
-                                TxtDescription.Text.Trim(),
-                                CurrentItem.Active
-                            );*/
+                            R = await ViewModel.Update(
+                               CurrentItem.ReservationId,
+                               CurrentItem.UserId,
+                               SelectedItem.ItemId,
+                               StartDate.DateTime,
+                               EndDate.DateTime,
+                               TxtDescription.Text.Trim()
+                           );
                         }
 
 
@@ -107,9 +116,39 @@ namespace AppProyecto.Views
             }
         }
 
-        private void BtnActionDelete_Clicked(object sender, EventArgs e)
+        private async void BtnActionDelete_Clicked(object sender, EventArgs e)
         {
+            try
+            {
+                UserDialogs.Instance.ShowLoading("Cargando..");
+                bool R = false;
 
+                //Elimina la reserva
+                
+                R = await ViewModel.Delete(
+                    CurrentItem.ReservationId
+                );
+                
+                if (R)
+                {
+                    await DisplayAlert("Atención", "Proceso finalizado correctamente", "Aceptar");
+                    await Navigation.PopAsync();
+                }
+                else
+                {
+                    await DisplayAlert("Atención", "Ocurrió un error realizando el proceso es posible que las fechas no esten disponibles", "Aceptar");
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                UserDialogs.Instance.HideLoading();
+            }
         }
 
         private async void BtnSearch_Clicked(object sender, EventArgs e)
@@ -138,6 +177,20 @@ namespace AppProyecto.Views
             {
                 return true;
             }
+        }
+
+        private async void BtnCheckReservations_Clicked(object sender, EventArgs e)
+        {
+            if (SelectedItem != null)
+            {
+                await this.Navigation.PushAsync(new ReservationItemList(SelectedItem));
+            }
+            else
+            {
+                await DisplayAlert("Atención", "Artefacto no seleccionado", "Aceptar");
+
+            }
+
         }
     }
 }

@@ -53,12 +53,17 @@
                     <Button x:Name="BtnSearch" Text="Selecionar" CornerRadius="20" Clicked="BtnSearch_Clicked" BackgroundColor="#1c0d5e"/>
                 </StackLayout>
 
+                <Button x:Name="BtnCheckReservations" Text="Verificar Reservas" Margin="80,50,80,50" CornerRadius="20" Clicked="BtnCheckReservations_Clicked" BackgroundColor="#1c0d5e"/>
+
                 <Editor x:Name="TxtDescription" Placeholder="Notas" HeightRequest="100" Margin="50,30,50,0" />
 
-                <Button x:Name="BtnAction" Text="Guardar" Margin="80,50,80,50" CornerRadius="20" Clicked="BtnAction_Clicked" BackgroundColor="#1c0d5e"/>
 
-                <Button x:Name="BtnActionDelete" Text="Eliminar" Margin="100,15,100,50" CornerRadius="20" Clicked="BtnActionDelete_Clicked" BackgroundColor="#1c0d5e" IsVisible="false"/>
-
+                <StackLayout  Margin="80,50,80,50">
+                    <Button x:Name="BtnAction" Text="Guardar" CornerRadius="20" Clicked="BtnAction_Clicked" BackgroundColor="#1c0d5e"/>
+                    <Button x:Name="BtnActionDelete" Text="Eliminar" Margin="20,15,20,0" CornerRadius="20" Clicked="BtnActionDelete_Clicked" BackgroundColor="#1c0d5e" IsVisible="false"/>
+                </StackLayout>
+                
+                
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

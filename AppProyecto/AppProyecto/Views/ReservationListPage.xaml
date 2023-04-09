@@ -46,23 +46,26 @@
 
 
 
-            <StackLayout Margin="50,10,50,0" Orientation="Horizontal">
+            <StackLayout Margin="50,10,50,0" Orientation="Horizontal" VerticalOptions="Center">
 
-                <Entry x:Name="TxtSearch" Placeholder="Buscar" Margin="0,0,10,0" HorizontalOptions="FillAndExpand" Text=""/>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <DatePicker x:Name="StartDate"  HorizontalOptions="FillAndExpand"/>
+                    <DatePicker x:Name="EndDate"  HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
 
                 <Image 
-                       Source="search.png" 
-                       HeightRequest="25"
-                       WidthRequest="25"
-                       xct:IconTintColorEffect.TintColor="#1c0d5e"
-                       >
+                    Source="search.png" 
+                    HeightRequest="25"
+                    WidthRequest="25"
+                    xct:IconTintColorEffect.TintColor="#1c0d5e"
+                    >
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer
-                                Tapped="TapGestureRecognizer_Tapped"
-                                NumberOfTapsRequired="1" />
+                            Tapped="TapGestureRecognizer_Tapped"
+                            NumberOfTapsRequired="1" />
                     </Image.GestureRecognizers>
                 </Image>
-
+            
             </StackLayout>
 
 
@@ -72,7 +75,8 @@
                         <ViewCell >
                             <StackLayout Orientation="Horizontal" HeightRequest="150">
                                 <Label Text="{Binding ItemName}" Margin="10,10,10,0"/>
-                                <Label Text="{Binding ItemDescription}" Margin="10,10,10,0"/>
+                                <Label Text="{Binding StartDate}" Margin="10,10,10,0"/>
+                                <Label Text="{Binding EndDate}" Margin="10,10,10,0"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

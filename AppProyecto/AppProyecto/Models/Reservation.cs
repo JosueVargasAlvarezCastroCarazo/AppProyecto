@@ -26,6 +26,7 @@ namespace AppProyecto.Models
         public DateTime EndDate { get; set; }
         public int UserId { get; set; }
         public int ItemId { get; set; }
+        public string ItemName { get; set; }
 
 
 
@@ -72,6 +73,87 @@ namespace AppProyecto.Models
         }
 
 
+        public async Task<bool> Update()
+        {
+            try
+            {
+                string RouteSufix = string.Format("Reservations/{0}", ReservationId);
+                string URL = APIConnection.ProductionUrlPrefix + RouteSufix;
+
+                RestClient client = new RestClient(URL);
+
+                Request = new RestRequest(URL, Method.Put);
+
+                Request.AddHeader(APIConnection.ApiKeyName, APIConnection.ApiKey);
+                Request.AddHeader(APIConnection.ContentType, APIConnection.MimeType);
+
+                string Serialize = JsonConvert.SerializeObject(this);
+
+                Request.AddBody(Serialize, APIConnection.MimeType);
+
+                RestResponse response = await client.ExecuteAsync(Request);
+
+                HttpStatusCode statusCode = response.StatusCode;
+
+                if (
+                    statusCode == HttpStatusCode.OK ||
+                    statusCode == HttpStatusCode.Created ||
+                    statusCode == HttpStatusCode.NoContent
+                    )
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                string ErrorMsg = ex.Message;
+                throw;
+            }
+        }
+
+        public async Task<bool> Delete()
+        {
+            try
+            {
+                string RouteSufix = string.Format("Reservations/{0}", ReservationId);
+                string URL = APIConnection.ProductionUrlPrefix + RouteSufix;
+
+                RestClient client = new RestClient(URL);
+
+                Request = new RestRequest(URL, Method.Delete);
+
+                Request.AddHeader(APIConnection.ApiKeyName, APIConnection.ApiKey);
+                Request.AddHeader(APIConnection.ContentType, APIConnection.MimeType);
+
+                string Serialize = JsonConvert.SerializeObject(this);
+
+                RestResponse response = await client.ExecuteAsync(Request);
+
+                HttpStatusCode statusCode = response.StatusCode;
+
+                if (
+                    statusCode == HttpStatusCode.OK ||
+                    statusCode == HttpStatusCode.Created ||
+                    statusCode == HttpStatusCode.NoContent
+                    )
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                string ErrorMsg = ex.Message;
+                throw;
+            }
+        }
 
         public async Task<List<Reservation>> GetList(int UserId,DateTime Start, DateTime End)
         {
@@ -79,8 +161,7 @@ namespace AppProyecto.Models
             {
                 string RouteSufix = "";
 
-           
-                RouteSufix = string.Format("items/Search?active={0}&search={1}", Active, search);
+                RouteSufix = string.Format("Reservations/Search?UserId={0}&Start={1}&End={2}", UserId, Start.ToString("yyyyMMddHHmmss"), End.ToString("yyyyMMddHHmmss"));
                 
                 string URL = APIConnection.ProductionUrlPrefix + RouteSufix;
 
@@ -118,7 +199,47 @@ namespace AppProyecto.Models
 
 
 
+        public async Task<List<Reservation>> SearchByItemId(int ItemId)
+        {
+            try
+            {
+                string RouteSufix = "";
 
+                RouteSufix = string.Format("Reservations/SearchByItemId?ItemId={0}", ItemId);
+
+                string URL = APIConnection.ProductionUrlPrefix + RouteSufix;
+
+                RestClient client = new RestClient(URL);
+
+                Request = new RestRequest(URL, Method.Get);
+
+                Request.AddHeader(APIConnection.ApiKeyName, APIConnection.ApiKey);
+                Request.AddHeader(APIConnection.ContentType, APIConnection.MimeType);
+
+                RestResponse response = await client.ExecuteAsync(Request);
+
+                HttpStatusCode statusCode = response.StatusCode;
+
+                if (
+                    statusCode == HttpStatusCode.OK ||
+                    statusCode == HttpStatusCode.Created ||
+                    statusCode == HttpStatusCode.NoContent
+                    )
+                {
+
+                    return JsonConvert.DeserializeObject<List<Reservation>>(response.Content);
+                }
+                else
+                {
+                    return new List<Reservation>();
+                }
+            }
+            catch (Exception ex)
+            {
+                string ErrorMsg = ex.Message;
+                throw;
+            }
+        }
 
 
 
