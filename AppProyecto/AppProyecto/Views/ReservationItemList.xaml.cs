@@ -23,6 +23,8 @@ namespace AppProyecto.Views
 			InitializeComponent ();
 		}
 
+
+        //constructor que recibe un articulo
         public ReservationItemList(Item currentItem)
         {
             InitializeComponent();
@@ -30,6 +32,8 @@ namespace AppProyecto.Views
             this.CurrentItem = currentItem;
         }
 
+
+        // muestra la lista de reservas de un articulo especifico para poder comprobar los horarios
         protected async override void OnAppearing()
         {
             try

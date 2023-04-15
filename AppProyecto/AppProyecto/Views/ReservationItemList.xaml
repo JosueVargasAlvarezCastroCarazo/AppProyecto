@@ -25,7 +25,7 @@
                     FontAttributes="Bold"
                     TextColor="#1c0d5e"/>
 
-            <ListView x:Name="ListPage" Margin="50,25,50,0">
+            <ListView x:Name="ListPage"  RowHeight="200" Margin="50,25,50,0">
                 <ListView.ItemTemplate>
                     <DataTemplate >
                         <ViewCell >

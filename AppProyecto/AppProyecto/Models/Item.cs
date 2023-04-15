@@ -25,6 +25,7 @@ namespace AppProyecto.Models
         public bool Active { get; set; }
 
 
+        //crea un nuevo artefacto
         public async Task<bool> Create()
         {
             try
@@ -67,6 +68,7 @@ namespace AppProyecto.Models
             }
         }
 
+        //obtiene un artefacto segun un id
         public async Task<Item> GetItemById(int id)
         {
             try
@@ -106,6 +108,7 @@ namespace AppProyecto.Models
             }
         }
 
+        //actualiza un artefacto
         public async Task<bool> Update()
         {
             try
@@ -149,6 +152,7 @@ namespace AppProyecto.Models
         }
 
 
+        //trae una lista de artefactos
         public async Task<List<Item>> GetList(bool Active,string search)
         {
             try

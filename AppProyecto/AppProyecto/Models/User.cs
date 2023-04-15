@@ -29,6 +29,8 @@ namespace AppProyecto.Models
         public bool? Active { get; set; }
         public string Email { get; set; }
 
+
+        //hace login y trae un usuario
         public async Task<User> ValidateLogin()
         {
             try
@@ -68,6 +70,7 @@ namespace AppProyecto.Models
             }
         }
 
+        //verifica la disponibilidad de una identificacion
         public async Task<User> CheckIdentification()
         {
             try
@@ -107,6 +110,7 @@ namespace AppProyecto.Models
             }
         }
 
+        //trae un usuario segun un id
         public async Task<User> GetUserById(int id)
         {
             try
@@ -147,6 +151,7 @@ namespace AppProyecto.Models
         }
 
 
+        //crea la cuenta de un usuario
         public async Task<bool> CreateAccount()
         {
             try
@@ -193,7 +198,7 @@ namespace AppProyecto.Models
 
 
 
-
+        //actualiza el perfil del usaurio
         public async Task<bool> UpdateProfile()
         {
             try
@@ -237,6 +242,7 @@ namespace AppProyecto.Models
         }
 
 
+        //actualiza la contraseña de un usuario
         public async Task<bool> UpdateProfilePassword()
         {
             try
@@ -279,7 +285,7 @@ namespace AppProyecto.Models
             }
         }
 
-
+        //trae una lista de usuarios con busqueda
         public async Task<List<User>> GetList(bool Active, string search)
         {
             try

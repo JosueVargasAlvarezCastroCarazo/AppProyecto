@@ -29,7 +29,7 @@ namespace AppProyecto.Models
         public string ItemName { get; set; }
 
 
-
+        //crea una reserva nueva
         public async Task<bool> Create()
         {
             try
@@ -73,6 +73,7 @@ namespace AppProyecto.Models
         }
 
 
+        //actualiza la reserva
         public async Task<bool> Update()
         {
             try
@@ -115,6 +116,7 @@ namespace AppProyecto.Models
             }
         }
 
+        //elimina una reserva completamente
         public async Task<bool> Delete()
         {
             try
@@ -155,6 +157,7 @@ namespace AppProyecto.Models
             }
         }
 
+        //trae una lista de reservas segun fechas de disponibilidad
         public async Task<List<Reservation>> GetList(int UserId,DateTime Start, DateTime End)
         {
             try
@@ -198,7 +201,7 @@ namespace AppProyecto.Models
         }
 
 
-
+        //busca una lista de reservas segun un item
         public async Task<List<Reservation>> SearchByItemId(int ItemId)
         {
             try

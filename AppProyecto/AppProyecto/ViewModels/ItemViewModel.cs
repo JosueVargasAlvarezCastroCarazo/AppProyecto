@@ -54,6 +54,8 @@ namespace AppProyecto.ViewModels
 
         }
 
+        
+        //trae un item segun un id
         public async Task<Item> GetItemById(int id)
         {
 
