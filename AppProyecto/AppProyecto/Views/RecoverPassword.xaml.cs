@@ -52,6 +52,7 @@ namespace AppProyecto.Views
                 {
                     UserDialogs.Instance.ShowLoading("Cargando..");
                     bool R = UserViewModel.SendEmail(TxtEmail.Text.Trim(), CurrentCode);
+                    R = await UserViewModel.SaveCode(CurrentCode, TxtEmail.Text.Trim(),DateTime.Now);
 
                     if (R)
                     {

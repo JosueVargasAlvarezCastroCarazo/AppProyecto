@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppProyecto.Views.HelpRequestCreatePage"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+
+                <Image Source="help" 
+                       Margin="50,100,50,0"
+                       HeightRequest="100"
+                       WidthRequest="100"
+                       xct:IconTintColorEffect.TintColor="#1c0d5e"/>
+
+                <Label 
+                    Text="Solicitud de Ayuda"
+                    FontSize="Large"
+                    VerticalOptions="Start" 
+                    HorizontalOptions="CenterAndExpand" 
+                    Margin="50,20,50,0" 
+                    FontAttributes="Bold"
+                    TextColor="#1c0d5e"/>
+
+                <Entry x:Name="TxtEmail" Placeholder="Email" Margin="50,30,50,0" Keyboard="Email" />
+                <Editor x:Name="TxtDescription" Placeholder="Describe tu problema" HeightRequest="100" Margin="50,30,50,0" />
+
+                <Button x:Name="BtnAction" Text="Crear" Margin="80,50,80,0" CornerRadius="20" Clicked="BtnAction_Clicked" BackgroundColor="#1c0d5e"/>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

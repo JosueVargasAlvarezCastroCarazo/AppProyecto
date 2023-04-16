@@ -25,6 +25,7 @@ namespace AppProyecto.Views
                 BtnReservations.IsVisible = false;
                 BtnUsers.IsVisible = false;
                 BtnTopReservation.IsVisible = false;
+                BtnHelp.IsVisible = false;
             }
 
         }
@@ -35,6 +36,7 @@ namespace AppProyecto.Views
             TxtUserWelcome.Text = "Bienvenido " + Global.user.Name;
         }
 
+        //my profile
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             await this.Navigation.PushAsync(new MyProfilePage());
@@ -63,6 +65,18 @@ namespace AppProyecto.Views
         private async void BtnTopReservation_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new TopPage());
+        }
+
+        //help requests
+        private async void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new HelpRequestCreatePage());
+        }
+
+        //abre la lista de soporte
+        private async void BtnHelp_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new HelpRequestListPage());
         }
     }
 }

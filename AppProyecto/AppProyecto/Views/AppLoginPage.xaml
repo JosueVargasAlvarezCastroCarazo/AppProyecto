@@ -9,6 +9,16 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
+
+                <Label Text="Ayuda" TextColor="#1c0d5e" Margin="25,25,0,0" HorizontalOptions="Start" >
+
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped_2" />
+                    </Label.GestureRecognizers>
+
+                </Label>
+
+
                 <Image Source="rabbit.png" 
                        Margin="50,100,50,0"
                        HeightRequest="100"
@@ -56,6 +66,7 @@
 
                 </Label>
 
+               
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

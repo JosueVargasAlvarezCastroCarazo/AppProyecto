@@ -6,21 +6,37 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <Image 
+
+                <StackLayout Orientation="Horizontal"  HorizontalOptions="FillAndExpand">
+
+                    <Label Text="Ayuda" TextColor="#1c0d5e" Margin="25,25,0,0" HorizontalOptions="StartAndExpand" VerticalOptions="Center" >
+
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped_1" />
+                        </Label.GestureRecognizers>
+
+                    </Label>
+
+
+                    <Image 
                        x:Name="ImgProfile"
                        Source="userIcon.png" 
-                       Margin="50,25,25,0"
+                       Margin="0,25,25,0"
                        HeightRequest="50"
                        WidthRequest="50"
                        xct:IconTintColorEffect.TintColor="#1c0d5e"
-                       HorizontalOptions="End"
+                       HorizontalOptions="EndAndExpand"
+                       VerticalOptions="Center"
                        >
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer
-                    Tapped="TapGestureRecognizer_Tapped"
-                    NumberOfTapsRequired="1" />     
-                    </Image.GestureRecognizers>
-                </Image>
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                        Tapped="TapGestureRecognizer_Tapped"
+                        NumberOfTapsRequired="1" />         
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+
+                
 
                 <Image 
                        Source="sports.png" 
@@ -55,6 +71,8 @@
                 <Button x:Name="BtnItems" HeightRequest="80" Text="Artefactos" Margin="80,10,80,0" CornerRadius="20" Clicked="BtnItems_Clicked" BackgroundColor="#1c0d5e"/>
                 <Button x:Name="BtnReservations" HeightRequest="80" Text="Reservas" Margin="80,10,80,0" CornerRadius="20" Clicked="BtnReservations_Clicked" BackgroundColor="#1c0d5e"/>
                 <Button x:Name="BtnTopReservation" HeightRequest="80" Text="Top Artefactos Reservados" Margin="80,10,80,0" CornerRadius="20" Clicked="BtnTopReservation_Clicked" BackgroundColor="#1c0d5e"/>
+                <Button x:Name="BtnHelp" HeightRequest="80" Text="Casos de Soporte" Margin="80,10,80,0" CornerRadius="20" Clicked="BtnHelp_Clicked" BackgroundColor="#1c0d5e"/>
+
                 <Button x:Name="BtnMyReservations" HeightRequest="250" Text="Mis Reservas" Margin="80,30,80,30" CornerRadius="20" Clicked="BtnMyReservations_Clicked" BackgroundColor="#1c0d5e"/>
 
             </StackLayout>

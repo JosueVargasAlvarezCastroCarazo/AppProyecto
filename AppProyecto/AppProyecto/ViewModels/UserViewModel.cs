@@ -11,10 +11,14 @@ namespace AppProyecto.ViewModels
     {
 
         public User MyUser { get; set; }
+        public RecoveryCode MyRecoveryCode { get; set; }
+        public HelpRequest MyHelpRequest { get; set; }
 
         public UserViewModel()
         {
             MyUser = new User();
+            MyRecoveryCode = new RecoveryCode();
+            MyHelpRequest = new HelpRequest();
         }
 
         //verifica el login ademas de retornar un usuario
@@ -312,6 +316,175 @@ namespace AppProyecto.ViewModels
             }
 
 
+        }
+
+        //save recovery code
+        public async Task<bool> SaveCode(
+            string code,
+            string email,
+            DateTime creationDate
+            )
+        {
+
+            if (IsBusy)
+            {
+                return false;
+            }
+            IsBusy = true;
+
+            try
+            {
+                MyRecoveryCode.Code = code;
+                MyRecoveryCode.Email = email;
+                MyRecoveryCode.CreationDate = creationDate;
+
+                bool R = await MyRecoveryCode.SaveCode();
+
+                return R;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+
+
+        }
+
+
+
+
+        //create help request
+        public async Task<bool> SaveHelpResquest(
+            string email,
+            string message
+            )
+        {
+
+            if (IsBusy)
+            {
+                return false;
+            }
+            IsBusy = true;
+
+            try
+            {
+                MyHelpRequest.Email = email;
+                MyHelpRequest.Message = message;
+
+                bool R = await MyHelpRequest.SaveHelpResquest();
+
+                return R;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+
+
+        }
+
+
+        //retorna una lista de helpRequest
+        public async Task<List<HelpRequest>> GetListGetHelpResquest(
+         )
+        {
+
+            if (IsBusy)
+            {
+                return new List<HelpRequest>();
+            }
+            IsBusy = true;
+
+            try
+            {
+
+                List<HelpRequest> R = await MyHelpRequest.GetListGetHelpResquest();
+
+                return R;
+            }
+            catch (Exception)
+            {
+                return new List<HelpRequest>();
+                throw;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+
+
+        }
+
+
+
+        public async Task<bool> DeleteHelpResquest(
+            int id
+         )
+        {
+
+            if (IsBusy)
+            {
+                return false;
+            }
+            IsBusy = true;
+
+            try
+            {
+
+                bool R = await MyHelpRequest.DeleteHelpResquest(id);
+
+                return R;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+
+
+        }
+
+
+
+        //envia un correo electronico de soporte
+        public bool SendEmailHelp(
+            string email,
+           string response)
+        {
+
+            try
+            {
+                var emailInstance = new Email();
+                emailInstance.SendTo = email;
+                emailInstance.Subeject = "Respuesta de soporte";
+                emailInstance.Message = response;
+                bool R = emailInstance.SendEmail();
+
+                return R;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
 
 

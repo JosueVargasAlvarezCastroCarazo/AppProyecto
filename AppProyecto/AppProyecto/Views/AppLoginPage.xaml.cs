@@ -89,14 +89,23 @@ namespace AutoAppo_JosueVa.Views
             }
         }
 
+        //show password
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             TxtPassword.IsPassword = !TxtPassword.IsPassword;
         }
 
+        //recuperar contraseña
         private async void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
         {
             await this.Navigation.PushAsync(new RecoverPassword());
+        }
+
+        //ayuda general de usuarios
+
+        private async void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new HelpRequestCreatePage());
         }
     }
 }
