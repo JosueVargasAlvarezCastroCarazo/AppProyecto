@@ -1,4 +1,5 @@
 ﻿using AppProyecto.Models;
+using AppProyecto.ModelsDTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -208,6 +209,37 @@ namespace AppProyecto.ViewModels
 
 
 
+
+        //top reservation list
+        public async Task<List<ReservationCount>> TopItems(
+          )
+        {
+
+            if (IsBusy)
+            {
+                return new List<ReservationCount>();
+            }
+            IsBusy = true;
+
+            try
+            {
+
+                List<ReservationCount> R = await MyReservation.TopItems();
+
+                return R;
+            }
+            catch (Exception)
+            {
+                return new List<ReservationCount>();
+                throw;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+
+
+        }
 
 
     }

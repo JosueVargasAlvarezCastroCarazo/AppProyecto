@@ -1,4 +1,5 @@
-﻿using AppProyecto.Services;
+﻿using AppProyecto.ModelsDTOs;
+using AppProyecto.Services;
 using Newtonsoft.Json;
 using RestSharp;
 using System;
@@ -245,7 +246,49 @@ namespace AppProyecto.Models
         }
 
 
+        //top lista de reservas
 
+        public async Task<List<ReservationCount>> TopItems()
+        {
+            try
+            {
+                string RouteSufix = "";
+
+                RouteSufix = string.Format("Reservations/TopItems");
+
+                string URL = APIConnection.ProductionUrlPrefix + RouteSufix;
+
+                RestClient client = new RestClient(URL);
+
+                Request = new RestRequest(URL, Method.Get);
+
+                Request.AddHeader(APIConnection.ApiKeyName, APIConnection.ApiKey);
+                Request.AddHeader(APIConnection.ContentType, APIConnection.MimeType);
+
+                RestResponse response = await client.ExecuteAsync(Request);
+
+                HttpStatusCode statusCode = response.StatusCode;
+
+                if (
+                    statusCode == HttpStatusCode.OK ||
+                    statusCode == HttpStatusCode.Created ||
+                    statusCode == HttpStatusCode.NoContent
+                    )
+                {
+
+                    return JsonConvert.DeserializeObject<List<ReservationCount>>(response.Content);
+                }
+                else
+                {
+                    return new List<ReservationCount>();
+                }
+            }
+            catch (Exception ex)
+            {
+                string ErrorMsg = ex.Message;
+                throw;
+            }
+        }
 
 
 

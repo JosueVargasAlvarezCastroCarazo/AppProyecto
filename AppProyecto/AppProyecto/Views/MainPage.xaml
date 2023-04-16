@@ -54,6 +54,7 @@
                 <Button x:Name="BtnUsers" HeightRequest="80" Text="Usuarios" Margin="80,30,80,0" CornerRadius="20" Clicked="BtnUsers_Clicked" BackgroundColor="#1c0d5e"/>
                 <Button x:Name="BtnItems" HeightRequest="80" Text="Artefactos" Margin="80,10,80,0" CornerRadius="20" Clicked="BtnItems_Clicked" BackgroundColor="#1c0d5e"/>
                 <Button x:Name="BtnReservations" HeightRequest="80" Text="Reservas" Margin="80,10,80,0" CornerRadius="20" Clicked="BtnReservations_Clicked" BackgroundColor="#1c0d5e"/>
+                <Button x:Name="BtnTopReservation" HeightRequest="80" Text="Top Artefactos Reservados" Margin="80,10,80,0" CornerRadius="20" Clicked="BtnTopReservation_Clicked" BackgroundColor="#1c0d5e"/>
                 <Button x:Name="BtnMyReservations" HeightRequest="250" Text="Mis Reservas" Margin="80,30,80,30" CornerRadius="20" Clicked="BtnMyReservations_Clicked" BackgroundColor="#1c0d5e"/>
 
             </StackLayout>

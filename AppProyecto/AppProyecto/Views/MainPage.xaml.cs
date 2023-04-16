@@ -24,7 +24,7 @@ namespace AppProyecto.Views
                 BtnItems.IsVisible = false;
                 BtnReservations.IsVisible = false;
                 BtnUsers.IsVisible = false;
-                BtnMyReservations.IsVisible = true;
+                BtnTopReservation.IsVisible = false;
             }
 
         }
@@ -58,6 +58,11 @@ namespace AppProyecto.Views
         private async void BtnMyReservations_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new ReservationListPage(true));
+        }
+
+        private async void BtnTopReservation_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new TopPage());
         }
     }
 }
