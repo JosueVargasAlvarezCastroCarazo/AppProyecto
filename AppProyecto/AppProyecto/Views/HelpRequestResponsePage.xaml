@@ -27,7 +27,7 @@
 
                 <Entry x:Name="TxtEmail" Placeholder="Email" Margin="50,50,50,0" IsReadOnly="True"/>
                 <Editor x:Name="TxTRequest" Placeholder="Problema" HeightRequest="100" Margin="50,30,50,0" IsReadOnly="True"/>
-                <Editor x:Name="TxTResponse" Placeholder="Respuesta del caso" HeightRequest="100" Margin="50,30,50,0" IsReadOnly="True"/>
+                <Editor x:Name="TxTResponse" Placeholder="Respuesta del caso" HeightRequest="100" Margin="50,30,50,0"/>
 
                 <Button x:Name="BtnAction" Text="Responder" Margin="80,50,80,0" CornerRadius="20" Clicked="BtnAction_Clicked" BackgroundColor="#1c0d5e"/>
 
