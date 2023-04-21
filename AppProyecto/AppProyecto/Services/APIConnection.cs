@@ -9,8 +9,8 @@ namespace AppProyecto.Services
         public static string MimeType = "application/json";
         public static string ContentType = "Content-Type";
 
-        public static string ProductionUrlPrefix = "http://192.168.0.10:45455/api/";
-        public static string TestingUrlPrefix = "http://192.168.0.10:45455/api/";
+        public static string ProductionUrlPrefix = "http://192.168.0.15:45455/api/";
+        public static string TestingUrlPrefix = "http://192.168.0.15:45455/api/";
 
         public static string ApiKey = "JosueVargasAQWERTQWEQWEQWEQWE";
         public static string ApiKeyName = "P6ApiKey";

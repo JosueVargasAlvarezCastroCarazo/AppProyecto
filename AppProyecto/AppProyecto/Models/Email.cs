@@ -27,8 +27,7 @@ namespace AutoAppo_JosueVa.Models
                 {
                     System.Net.Mail.MailMessage email = new System.Net.Mail.MailMessage();
 
-
-                    email.From = new System.Net.Mail.MailAddress("progra6umcacr@gmail.com");
+                    email.From = new System.Net.Mail.MailAddress("jjSendPrCastro@gmail.com");
                     email.Subject = Subeject;
                     email.Body = Message;
                     email.To.Add(SendTo);
@@ -42,7 +41,8 @@ namespace AutoAppo_JosueVa.Models
                     server.EnableSsl = true;
                     server.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
 
-                    server.Credentials = new NetworkCredential("progra6umcacr@gmail.com", "txkzosgwwhipzjpr");
+                    // contraseña corriente txkzosgwwhipzjpr             contra acceso app jdpqqahkgrlhbqkj
+                    server.Credentials = new NetworkCredential("jjSendPrCastro@gmail.com", "jdpqqahkgrlhbqkj");
 
                     server.Send(email);
 
@@ -50,7 +50,7 @@ namespace AutoAppo_JosueVa.Models
 
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
                 throw;
